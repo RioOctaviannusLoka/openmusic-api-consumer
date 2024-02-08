@@ -1,0 +1,20 @@
+{
+  "name": "openmusic-api-consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/consumer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.4.1",
+    "eslint": "^8.56.0",
+    "nodemailer": "^6.9.9",
+    "pg": "^8.11.3"
+  }
+}
