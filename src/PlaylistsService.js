@@ -15,16 +15,24 @@ class PlaylistsService {
 
     const songsQuery = {
       text: `SELECT songs.id, songs.title, songs.performer
-      FROM playlists_songs
+      FROM playlists
+      LEFT JOIN playlists_songs ON playlists_songs.playlist_id = playlists.id
       LEFT JOIN songs ON playlists_songs.song_id = songs.id
-      WHERE playlists_songs.playlist_id = $1`,
+      WHERE playlists.id = $1`,
       values: [playlistId],
     };
     const songsResult = await this._pool.query(songsQuery);
     const songs = songsResult.rows;
 
-    playlist.songs = songs;
-    return playlist;
+    const exportPlaylist = {
+      playlist: {
+        id: playlist.id,
+        name: playlist.name,
+        songs: songs,
+      },
+    };
+
+    return exportPlaylist;
   }
 }
 
